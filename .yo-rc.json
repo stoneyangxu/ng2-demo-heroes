@@ -1,0 +1,15 @@
+{
+  "generator-ng-fullstack": {
+    "appName": "ng2-demo-heroes",
+    "username": "stoneyangxu",
+    "userEmail": "stoneyangxu@icloud.com",
+    "stack": "client",
+    "repoHostUrl": "github.com",
+    "userNameSpace": "stoneyangxu",
+    "client": "ng2",
+    "stylePreprocessor": "less",
+    "server": "",
+    "secure": false,
+    "testsSeparated": true
+  }
+}
