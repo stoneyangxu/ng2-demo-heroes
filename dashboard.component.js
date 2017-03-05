@@ -13,30 +13,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Created by yangxu on 2017/3/5.
  */
 const core_1 = require("@angular/core");
-const http_1 = require("@angular/http");
-require("rxjs/add/operator/toPromise");
-let HeroService = class HeroService {
-    constructor(http) {
-        this.http = http;
-        this.heroesUrl = "api/heroes";
+const hero_service_1 = require("./services/hero.service");
+let DashboardComponent = class DashboardComponent {
+    constructor(heroService) {
+        this.heroService = heroService;
+        this.heroes = [];
     }
-    getHeroes() {
-        return this.http.get(this.heroesUrl)
-            .toPromise()
-            .then(response => response.json().data)
-            .catch(this.handleError);
-    }
-    handleError(error) {
-        console.error('An error occurred', error); // for demo purposes only
-        return Promise.reject(error.message || error);
-    }
-    getHero(id) {
-        return this.getHeroes().then(heroes => heroes.find(hero => hero.id === id));
+    ngOnInit() {
+        this.heroService.getHeroes()
+            .then(heroes => this.heroes = heroes.slice(1, 5));
     }
 };
-HeroService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], HeroService);
-exports.HeroService = HeroService;
-//# sourceMappingURL=hero.service.js.map
+DashboardComponent = __decorate([
+    core_1.Component({
+        selector: 'dashboard',
+        templateUrl: 'templates/dashboard.component.html',
+        styleUrls: ["styles/dashboard.component.css"]
+    }),
+    __metadata("design:paramtypes", [hero_service_1.HeroService])
+], DashboardComponent);
+exports.DashboardComponent = DashboardComponent;

@@ -13,30 +13,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Created by yangxu on 2017/3/5.
  */
 const core_1 = require("@angular/core");
-const http_1 = require("@angular/http");
-require("rxjs/add/operator/toPromise");
-let HeroService = class HeroService {
-    constructor(http) {
-        this.http = http;
-        this.heroesUrl = "api/heroes";
+const hero_service_1 = require("./services/hero.service");
+const router_1 = require("@angular/router");
+let HeroListComponent = class HeroListComponent {
+    constructor(heroService, router) {
+        this.heroService = heroService;
+        this.router = router;
     }
-    getHeroes() {
-        return this.http.get(this.heroesUrl)
-            .toPromise()
-            .then(response => response.json().data)
-            .catch(this.handleError);
+    ngOnInit() {
+        this.heroService.getHeroes().then(heroes => this.heroes = heroes);
     }
-    handleError(error) {
-        console.error('An error occurred', error); // for demo purposes only
-        return Promise.reject(error.message || error);
+    onSelect(hero) {
+        this.selectedHero = hero;
     }
-    getHero(id) {
-        return this.getHeroes().then(heroes => heroes.find(hero => hero.id === id));
+    gotoDetail() {
+        this.router.navigate(["/detail", this.selectedHero.id]);
     }
 };
-HeroService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], HeroService);
-exports.HeroService = HeroService;
-//# sourceMappingURL=hero.service.js.map
+HeroListComponent = __decorate([
+    core_1.Component({
+        selector: 'hero-list',
+        templateUrl: "templates/hero-list.component.html",
+        styleUrls: ['styles/hero-list.component.css']
+    }),
+    __metadata("design:paramtypes", [hero_service_1.HeroService, router_1.Router])
+], HeroListComponent);
+exports.HeroListComponent = HeroListComponent;

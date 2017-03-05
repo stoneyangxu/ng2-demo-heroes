@@ -48,3 +48,4 @@ HeroDetailComponent = __decorate([
         common_1.Location])
 ], HeroDetailComponent);
 exports.HeroDetailComponent = HeroDetailComponent;
+//# sourceMappingURL=hero-detail.component.js.map

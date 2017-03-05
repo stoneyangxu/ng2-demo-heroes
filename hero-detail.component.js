@@ -13,24 +13,38 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Created by yangxu on 2017/3/5.
  */
 const core_1 = require("@angular/core");
+const hero_1 = require("./hero");
+const router_1 = require("@angular/router");
 const hero_service_1 = require("./services/hero.service");
-let DashboardComponent = class DashboardComponent {
-    constructor(heroService) {
+const common_1 = require("@angular/common");
+require("rxjs/add/operator/switchMap");
+let HeroDetailComponent = class HeroDetailComponent {
+    constructor(heroService, route, location) {
         this.heroService = heroService;
-        this.heroes = [];
+        this.route = route;
+        this.location = location;
     }
     ngOnInit() {
-        this.heroService.getHeroes()
-            .then(heroes => this.heroes = heroes.slice(1, 5));
+        this.route.params
+            .switchMap((params) => this.heroService.getHero(+params['id']))
+            .subscribe(hero => this.hero = hero);
+    }
+    goBack() {
+        this.location.back();
     }
 };
-DashboardComponent = __decorate([
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", hero_1.Hero)
+], HeroDetailComponent.prototype, "hero", void 0);
+HeroDetailComponent = __decorate([
     core_1.Component({
-        selector: 'dashboard',
-        templateUrl: 'templates/dashboard.component.html',
-        styleUrls: ["styles/dashboard.component.css"]
+        selector: 'hero-detail',
+        templateUrl: "templates/hero-detail.component.html",
+        styleUrls: ["styles/hero-detail.component.css"]
     }),
-    __metadata("design:paramtypes", [hero_service_1.HeroService])
-], DashboardComponent);
-exports.DashboardComponent = DashboardComponent;
-//# sourceMappingURL=dashboard.component.js.map
+    __metadata("design:paramtypes", [hero_service_1.HeroService,
+        router_1.ActivatedRoute,
+        common_1.Location])
+], HeroDetailComponent);
+exports.HeroDetailComponent = HeroDetailComponent;

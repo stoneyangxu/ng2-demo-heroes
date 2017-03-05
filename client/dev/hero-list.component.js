@@ -39,3 +39,4 @@ HeroListComponent = __decorate([
     __metadata("design:paramtypes", [hero_service_1.HeroService, router_1.Router])
 ], HeroListComponent);
 exports.HeroListComponent = HeroListComponent;
+//# sourceMappingURL=hero-list.component.js.map
