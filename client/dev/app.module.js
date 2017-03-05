@@ -8,8 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
-const app_1 = require("./app");
+const app_component_1 = require("./app.component");
 const forms_1 = require("@angular/forms");
+const hero_detail_component_1 = require("./hero-detail.component");
+const hero_list_component_1 = require("./hero-list.component");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -19,11 +21,13 @@ AppModule = __decorate([
             forms_1.FormsModule,
         ],
         declarations: [
-            app_1.AppComponent,
+            app_component_1.AppComponent,
+            hero_detail_component_1.HeroDetailComponent,
+            hero_list_component_1.HeroListComponent
         ],
         providers: [],
         bootstrap: [
-            app_1.AppComponent,
+            app_component_1.AppComponent,
         ],
     })
 ], AppModule);

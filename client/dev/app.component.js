@@ -7,13 +7,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
+const HEROES = [
+    { id: 11, name: 'Mr. Nice' },
+    { id: 12, name: 'Narco' },
+    { id: 13, name: 'Bombasto' },
+    { id: 14, name: 'Celeritas' },
+    { id: 15, name: 'Magneta' },
+    { id: 16, name: 'RubberMan' },
+    { id: 17, name: 'Dynama' },
+    { id: 18, name: 'Dr IQ' },
+    { id: 19, name: 'Magma' },
+    { id: 20, name: 'Tornado' }
+];
 let AppComponent = class AppComponent {
     constructor() {
         this.title = 'Tour of Heroes';
-        this.hero = {
-            id: 1,
-            name: "Windstorm"
-        };
+        this.heroes = HEROES;
+    }
+    onSelect(hero) {
+        this.selectedHero = hero;
     }
 };
 AppComponent = __decorate([
@@ -21,13 +33,12 @@ AppComponent = __decorate([
         selector: "app",
         template: `
   <h1>{{title}}</h1>
-  <h2>{{hero.name}} details!</h2>
-  <div><label>id: </label>{{hero.id}}</div>
-  <div>
-    <label>name: </label>
-    <input [(ngModel)]="hero.name" placeholder="name">
-  </div>
-  `
+  <hero-list [heroes]="heroes" (selectHeroEmitter)="onSelect($event)"></hero-list>
+
+  <hero-detail [hero]="selectedHero"></hero-detail>
+  `,
+        styleUrls: ["styles/app.component.css"]
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;
+//# sourceMappingURL=app.component.js.map
