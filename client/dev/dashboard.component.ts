@@ -7,7 +7,8 @@ import {Hero} from "./hero";
 
 @Component({
   selector: 'dashboard',
-  templateUrl: 'templates/dashboard.component.html'
+  templateUrl: 'templates/dashboard.component.html',
+  styleUrls: ["styles/dashboard.component.css"]
 })
 export class DashboardComponent implements OnInit {
 

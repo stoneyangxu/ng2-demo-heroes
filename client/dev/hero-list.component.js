@@ -14,9 +14,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const core_1 = require("@angular/core");
 const hero_service_1 = require("./services/hero.service");
+const router_1 = require("@angular/router");
 let HeroListComponent = class HeroListComponent {
-    constructor(heroService) {
+    constructor(heroService, router) {
         this.heroService = heroService;
+        this.router = router;
     }
     ngOnInit() {
         this.heroService.getHeroes().then(heroes => this.heroes = heroes);
@@ -24,25 +26,16 @@ let HeroListComponent = class HeroListComponent {
     onSelect(hero) {
         this.selectedHero = hero;
     }
+    gotoDetail() {
+        this.router.navigate(["/detail", this.selectedHero.id]);
+    }
 };
 HeroListComponent = __decorate([
     core_1.Component({
         selector: 'hero-list',
-        template: `
-  <h1>{{title}}</h1>
-  <h2>My Heroes</h2>
-  <ul class="heroes">
-    <li *ngFor="let hero of heroes"
-      [class.selected]="hero === selectedHero"
-      (click)="onSelect(hero)">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}
-    </li>
-  </ul>
-  <hero-detail [hero]="selectedHero"></hero-detail>
-`,
+        templateUrl: "templates/hero-list.component.html",
         styleUrls: ['styles/hero-list.component.css']
     }),
-    __metadata("design:paramtypes", [hero_service_1.HeroService])
+    __metadata("design:paramtypes", [hero_service_1.HeroService, router_1.Router])
 ], HeroListComponent);
 exports.HeroListComponent = HeroListComponent;
-//# sourceMappingURL=hero-list.component.js.map

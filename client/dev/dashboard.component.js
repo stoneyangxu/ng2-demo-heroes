@@ -27,9 +27,9 @@ let DashboardComponent = class DashboardComponent {
 DashboardComponent = __decorate([
     core_1.Component({
         selector: 'dashboard',
-        templateUrl: 'templates/dashboard.component.html'
+        templateUrl: 'templates/dashboard.component.html',
+        styleUrls: ["styles/dashboard.component.css"]
     }),
     __metadata("design:paramtypes", [hero_service_1.HeroService])
 ], DashboardComponent);
 exports.DashboardComponent = DashboardComponent;
-//# sourceMappingURL=dashboard.component.js.map
