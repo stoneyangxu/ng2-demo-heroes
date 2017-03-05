@@ -23,6 +23,17 @@ let HeroListComponent = class HeroListComponent {
     ngOnInit() {
         this.heroService.getHeroes().then(heroes => this.heroes = heroes);
     }
+    add(name) {
+        name = name.trim();
+        if (!name) {
+            return;
+        }
+        this.heroService.create(name)
+            .then(hero => {
+            this.heroes.push(hero);
+            this.selectedHero = null;
+        });
+    }
     onSelect(hero) {
         this.selectedHero = hero;
     }

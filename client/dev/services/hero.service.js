@@ -45,6 +45,13 @@ let HeroService = class HeroService {
             .then(() => hero)
             .catch(this.handleError);
     }
+    create(name) {
+        return this.http
+            .post(this.heroesUrl, JSON.stringify({ name: name }), { headers: this.headers })
+            .toPromise()
+            .then(res => res.json().data)
+            .catch(this.handleError);
+    }
 };
 HeroService = __decorate([
     core_1.Injectable(),
