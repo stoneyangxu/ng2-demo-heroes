@@ -19,6 +19,7 @@ let HeroService = class HeroService {
     constructor(http) {
         this.http = http;
         this.heroesUrl = "api/heroes";
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     getHeroes() {
         return this.http.get(this.heroesUrl)
@@ -31,7 +32,18 @@ let HeroService = class HeroService {
         return Promise.reject(error.message || error);
     }
     getHero(id) {
-        return this.getHeroes().then(heroes => heroes.find(hero => hero.id === id));
+        let url = `${this.heroesUrl}/${id}`;
+        return this.http.get(url).toPromise()
+            .then(response => response.json().data)
+            .catch(this.handleError);
+    }
+    update(hero) {
+        const url = `${this.heroesUrl}/${hero.id}`;
+        return this.http
+            .put(url, JSON.stringify(hero), { headers: this.headers })
+            .toPromise()
+            .then(() => hero)
+            .catch(this.handleError);
     }
 };
 HeroService = __decorate([
