@@ -15,6 +15,9 @@ let HeroService = class HeroService {
     getHeroes() {
         return Promise.resolve(mock_heroes_1.HEROES);
     }
+    getHero(id) {
+        return this.getHeroes().then(heroes => heroes.find(hero => hero.id === id));
+    }
 };
 HeroService = __decorate([
     core_1.Injectable()

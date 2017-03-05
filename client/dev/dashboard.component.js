@@ -14,35 +14,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const core_1 = require("@angular/core");
 const hero_service_1 = require("./services/hero.service");
-let HeroListComponent = class HeroListComponent {
+let DashboardComponent = class DashboardComponent {
     constructor(heroService) {
         this.heroService = heroService;
+        this.heroes = [];
     }
     ngOnInit() {
-        this.heroService.getHeroes().then(heroes => this.heroes = heroes);
-    }
-    onSelect(hero) {
-        this.selectedHero = hero;
+        this.heroService.getHeroes()
+            .then(heroes => this.heroes = heroes.slice(1, 5));
     }
 };
-HeroListComponent = __decorate([
+DashboardComponent = __decorate([
     core_1.Component({
-        selector: 'hero-list',
-        template: `
-  <h1>{{title}}</h1>
-  <h2>My Heroes</h2>
-  <ul class="heroes">
-    <li *ngFor="let hero of heroes"
-      [class.selected]="hero === selectedHero"
-      (click)="onSelect(hero)">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}
-    </li>
-  </ul>
-  <hero-detail [hero]="selectedHero"></hero-detail>
-`,
-        styleUrls: ['styles/hero-list.component.css']
+        selector: 'dashboard',
+        templateUrl: 'templates/dashboard.component.html'
     }),
     __metadata("design:paramtypes", [hero_service_1.HeroService])
-], HeroListComponent);
-exports.HeroListComponent = HeroListComponent;
-//# sourceMappingURL=hero-list.component.js.map
+], DashboardComponent);
+exports.DashboardComponent = DashboardComponent;
+//# sourceMappingURL=dashboard.component.js.map

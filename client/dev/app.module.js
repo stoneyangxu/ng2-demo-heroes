@@ -12,6 +12,9 @@ const app_component_1 = require("./app.component");
 const forms_1 = require("@angular/forms");
 const hero_detail_component_1 = require("./hero-detail.component");
 const hero_list_component_1 = require("./hero-list.component");
+const dashboard_component_1 = require("./dashboard.component");
+const hero_service_1 = require("./services/hero.service");
+const app_routing_module_1 = require("./app-routing.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -19,13 +22,17 @@ AppModule = __decorate([
         imports: [
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
+            app_routing_module_1.AppRoutingModule
         ],
         declarations: [
             app_component_1.AppComponent,
             hero_detail_component_1.HeroDetailComponent,
-            hero_list_component_1.HeroListComponent
+            hero_list_component_1.HeroListComponent,
+            dashboard_component_1.DashboardComponent
         ],
-        providers: [],
+        providers: [
+            hero_service_1.HeroService
+        ],
         bootstrap: [
             app_component_1.AppComponent,
         ],
