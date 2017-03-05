@@ -34,6 +34,16 @@ let HeroListComponent = class HeroListComponent {
             this.selectedHero = null;
         });
     }
+    delete(hero) {
+        this.heroService
+            .delete(hero.id)
+            .then(() => {
+            this.heroes = this.heroes.filter(h => h !== hero);
+            if (this.selectedHero === hero) {
+                this.selectedHero = null;
+            }
+        });
+    }
     onSelect(hero) {
         this.selectedHero = hero;
     }

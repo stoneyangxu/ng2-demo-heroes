@@ -18,6 +18,7 @@ const app_routing_module_1 = require("./app-routing.module");
 const http_1 = require("@angular/http");
 const angular2_in_memory_web_api_1 = require("angular2-in-memory-web-api");
 const in_memory_data_service_1 = require("./mock/in-memory-data.service");
+const hero_search_component_1 = require("./components/hero-search.component");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -33,7 +34,8 @@ AppModule = __decorate([
             app_component_1.AppComponent,
             hero_detail_component_1.HeroDetailComponent,
             hero_list_component_1.HeroListComponent,
-            dashboard_component_1.DashboardComponent
+            dashboard_component_1.DashboardComponent,
+            hero_search_component_1.HeroSearchComponent
         ],
         providers: [
             hero_service_1.HeroService
