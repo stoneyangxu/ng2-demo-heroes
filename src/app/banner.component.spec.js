@@ -10,21 +10,16 @@ describe("BannerComponent", function () {
     var fixture;
     var de;
     var el;
-    beforeEach(function () {
+    beforeEach(testing_1.async(function () {
         testing_1.TestBed.configureTestingModule({
             declarations: [banner_component_1.BannerComponent],
-            providers: [
-                {
-                    provider: testing_1.ComponentFixtureAutoDetect,
-                    useValue: true
-                }
-            ]
+        }).compileComponents().then(function () {
+            fixture = testing_1.TestBed.createComponent(banner_component_1.BannerComponent);
+            comp = fixture.componentInstance;
+            de = fixture.debugElement.query(platform_browser_1.By.css("h1"));
+            el = de.nativeElement;
         });
-        fixture = testing_1.TestBed.createComponent(banner_component_1.BannerComponent);
-        comp = fixture.componentInstance;
-        de = fixture.debugElement.query(platform_browser_1.By.css("h1"));
-        el = de.nativeElement;
-    });
+    }));
     it("should display original title", function () {
         fixture.detectChanges();
         expect(el.textContent).toBe(comp.title);

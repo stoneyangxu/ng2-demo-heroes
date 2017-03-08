@@ -1,5 +1,5 @@
 import {BannerComponent} from "./banner.component";
-import {ComponentFixture, TestBed, ComponentFixtureAutoDetect} from "@angular/core/testing";
+import {ComponentFixture, TestBed, ComponentFixtureAutoDetect, async} from "@angular/core/testing";
 import {DebugElement} from "@angular/core";
 import {By} from "@angular/platform-browser";
 /**
@@ -12,24 +12,17 @@ describe("BannerComponent", () => {
   let de: DebugElement;
   let el: HTMLElement;
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [BannerComponent],
-      providers: [
-        {
-          provider: ComponentFixtureAutoDetect,
-          useValue: true
-        }
-      ]
+    }).compileComponents().then(() => {
+      fixture = TestBed.createComponent(BannerComponent);
+
+      comp = fixture.componentInstance;
+      de = fixture.debugElement.query(By.css("h1"));
+      el = de.nativeElement;
     });
-
-    fixture = TestBed.createComponent(BannerComponent);
-
-    comp = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css("h1"));
-    el = de.nativeElement;
-
-  });
+  }));
 
   it("should display original title", () => {
     fixture.detectChanges();

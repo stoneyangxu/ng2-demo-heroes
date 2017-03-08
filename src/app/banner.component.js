@@ -18,8 +18,10 @@ var BannerComponent = (function () {
     }
     BannerComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'app-banner',
-            template: '<h1>{{title}}</h1>'
+            templateUrl: './banner.component.html',
+            styleUrls: ["./banner.component.css"]
         }), 
         __metadata('design:paramtypes', [])
     ], BannerComponent);
