@@ -1,37 +1,31 @@
+import {async, TestBed, ComponentFixture} from "@angular/core/testing";
 import {BannerComponent} from "./banner.component";
-import {ComponentFixture, TestBed, ComponentFixtureAutoDetect, async} from "@angular/core/testing";
-import {DebugElement} from "@angular/core";
 import {By} from "@angular/platform-browser";
 /**
- * Created by yangxu on 2017/3/7.
+ * Created by yangxu on 2017/3/12.
  */
 describe("BannerComponent", () => {
 
-  let comp: BannerComponent;
   let fixture: ComponentFixture<BannerComponent>;
-  let de: DebugElement;
-  let el: HTMLElement;
+  let comp: BannerComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BannerComponent],
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(BannerComponent);
-
-      comp = fixture.componentInstance;
-      de = fixture.debugElement.query(By.css("h1"));
-      el = de.nativeElement;
-    });
+      declarations: [
+        BannerComponent
+      ]
+    }).compileComponents();
   }));
 
-  it("should display original title", () => {
-    fixture.detectChanges();
-    expect(el.textContent).toBe(comp.title);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(BannerComponent);
+    comp = fixture.componentInstance;
   });
 
-  it("should display a different test title", () => {
-    comp.title = "Test Title";
+  it("should display title in h1 element", () => {
+    comp.title = "Title that should display";
     fixture.detectChanges();
-    expect(el.textContent).toBe("Test Title");
-  })
+    let element = fixture.debugElement.query(By.css("h1")).nativeElement;
+    expect(element.textContent).toBe("Title that should display");
+  });
 });
